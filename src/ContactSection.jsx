@@ -41,7 +41,7 @@ export default function ContactSection({ cardStyle }) {
       icon: <FaLinkedin />,
       title: 'LinkedIn',
       text: 'Connect with me',
-      link: 'https://linkedin.com',
+      link: 'https://www.linkedin.com/in/joseph-frimpong-484299221',
       color: '#0077b5'
     },
     {

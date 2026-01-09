@@ -1,12 +1,27 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaGithub, FaArrowLeft, FaStar, FaCodeBranch, FaEye } from 'react-icons/fa';
+import { FaGithub, FaArrowLeft, FaStar, FaCodeBranch, FaEye, FaServer, FaCloud } from 'react-icons/fa';
 
 export default function ProjectsPage() {
   const navigate = useNavigate();
   const [hoveredProject, setHoveredProject] = useState(null);
+  const [videoModal, setVideoModal] = useState({ open: false, src: '' });
 
   const projects = [
+    {
+      title: 'Microservice Finance System',
+      description: 'A distributed financial platform built with microservices architecture. Features include real-time transaction processing, fraud detection, user management, and API gateways. Uses event-driven communication and container orchestration for scalability.',
+      link: 'https://github.com/Frimzy55/Yonkopa_micro_credit',
+      icon: '💳',
+      tech: ['Spring Boot', 'Docker', 'Kubernetes', 'PostgreSQL', 'Kafka', 'Redis', 'React'],
+      stars: 42,
+      forks: 15,
+      featured: true,
+      status: 'Active',
+      //videoSrc: '/videos/microservice_demo.mp4'
+      videoSrc: `${process.env.PUBLIC_URL}/demo/demo1.mp4`
+
+    },
     {
       title: 'Meal Planning App',
       description: 'A personalized nutrition and meal planning application that helps users track their dietary goals and plan meals efficiently. Features include recipe management, nutritional analysis, and shopping list generation.',
@@ -15,7 +30,8 @@ export default function ProjectsPage() {
       tech: ['React', 'Node.js', 'MySQL', 'Express', 'JWT'],
       stars: 24,
       forks: 8,
-      featured: true
+      featured: true,
+      videoSrc: `${process.env.PUBLIC_URL}/demo/demo2.mp4`
     },
     {
       title: 'Library Management System',
@@ -25,47 +41,8 @@ export default function ProjectsPage() {
       tech: ['Electron', 'MySQL', 'JavaScript', 'HTML/CSS'],
       stars: 18,
       forks: 5,
-      featured: true
-    },
-    {
-      title: 'Facial Recognition Attendance',
-      description: 'An intelligent attendance system using computer vision to automatically detect and recognize faces. Includes real-time tracking and reporting capabilities for educational institutions.',
-      link: 'https://github.com/Frimzy55/face-attendance',
-      icon: '👁️',
-      tech: ['Python', 'OpenCV', 'TensorFlow', 'Flask'],
-      stars: 32,
-      forks: 12,
-      featured: false
-    },
-    {
-      title: 'E-Commerce Platform',
-      description: 'A full-stack e-commerce solution with user authentication, product management, shopping cart, and payment integration.',
-      link: '#',
-      icon: '🛒',
-      tech: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-      stars: 15,
-      forks: 6,
-      featured: false
-    },
-    {
-      title: 'Task Management App',
-      description: 'A collaborative task management tool with real-time updates, team collaboration features, and progress tracking.',
-      link: '#',
-      icon: '✅',
-      tech: ['Vue.js', 'Firebase', 'SCSS', 'PWA'],
-      stars: 21,
-      forks: 9,
-      featured: false
-    },
-    {
-      title: 'Weather Dashboard',
-      description: 'A responsive weather application with location-based forecasts, interactive maps, and severe weather alerts.',
-      link: '#',
-      icon: '🌤️',
-      tech: ['React', 'API Integration', 'Chart.js', 'Geolocation'],
-      stars: 12,
-      forks: 4,
-      featured: false
+      featured: true,
+      videoSrc: '/videos/Reactmp.mp4'
     }
   ];
 
@@ -107,7 +84,7 @@ export default function ProjectsPage() {
         filter: 'blur(40px)',
         zIndex: 0,
       }} />
-      
+
       <div style={{
         position: 'absolute',
         bottom: '10%',
@@ -221,6 +198,7 @@ export default function ProjectsPage() {
                 overflow: 'hidden',
               }}
             >
+              {/* Featured Badge */}
               {project.featured && (
                 <div style={{
                   position: 'absolute',
@@ -232,9 +210,14 @@ export default function ProjectsPage() {
                   borderRadius: '12px',
                   fontSize: '0.8rem',
                   fontWeight: '600',
-                  zIndex: 2
+                  zIndex: 2,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px'
                 }}>
-                  Featured
+                  {project.title === 'Microservice Finance System' ? <FaServer /> : '⭐'}
+                  {project.featured ? 'Featured' : ''}
+                  {project.status && ` • ${project.status}`}
                 </div>
               )}
 
@@ -252,9 +235,13 @@ export default function ProjectsPage() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  background: 'rgba(0, 255, 136, 0.1)',
+                  background: project.title === 'Microservice Finance System' 
+                    ? 'rgba(147, 51, 234, 0.1)' 
+                    : 'rgba(0, 255, 136, 0.1)',
                   borderRadius: '12px',
-                  border: '1px solid rgba(0, 255, 136, 0.2)'
+                  border: project.title === 'Microservice Finance System'
+                    ? '1px solid rgba(147, 51, 234, 0.2)'
+                    : '1px solid rgba(0, 255, 136, 0.2)'
                 }}>
                   {project.icon}
                 </div>
@@ -273,13 +260,19 @@ export default function ProjectsPage() {
                     alignItems: 'center'
                   }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#cccccc', fontSize: '0.9rem' }}>
-                      <FaStar />
+                      <FaStar style={{ color: '#FFD700' }} />
                       <span>{project.stars}</span>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#cccccc', fontSize: '0.9rem' }}>
                       <FaCodeBranch />
                       <span>{project.forks}</span>
                     </div>
+                    {project.title === 'Microservice Finance System' && (
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#cccccc', fontSize: '0.9rem' }}>
+                        <FaCloud style={{ color: '#00ff88' }} />
+                        <span>Microservices</span>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -305,15 +298,31 @@ export default function ProjectsPage() {
                   <span
                     key={techIndex}
                     style={{
-                      background: 'rgba(0, 255, 136, 0.1)',
-                      color: '#00ff88',
+                      background: project.title === 'Microservice Finance System' && 
+                                 ['Kubernetes', 'Docker', 'Kafka'].includes(tech)
+                        ? 'rgba(147, 51, 234, 0.1)'
+                        : 'rgba(0, 255, 136, 0.1)',
+                      color: project.title === 'Microservice Finance System' && 
+                             ['Kubernetes', 'Docker', 'Kafka'].includes(tech)
+                        ? '#9333EA'
+                        : '#00ff88',
                       padding: '6px 12px',
                       borderRadius: '20px',
                       fontSize: '0.8rem',
                       fontWeight: '500',
-                      border: '1px solid rgba(0, 255, 136, 0.2)'
+                      border: project.title === 'Microservice Finance System' && 
+                              ['Kubernetes', 'Docker', 'Kafka'].includes(tech)
+                        ? '1px solid rgba(147, 51, 234, 0.2)'
+                        : '1px solid rgba(0, 255, 136, 0.2)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '4px'
                     }}
                   >
+                    {tech === 'Docker' && '🐳'}
+                    {tech === 'Kubernetes' && '☸️'}
+                    {tech === 'Kafka' && '🚀'}
+                    {tech === 'Redis' && '🔴'}
                     {tech}
                   </span>
                 ))}
@@ -334,7 +343,9 @@ export default function ProjectsPage() {
                     alignItems: 'center',
                     gap: '8px',
                     padding: '10px 20px',
-                    background: 'linear-gradient(45deg, #00ff88, #007bff)',
+                    background: project.title === 'Microservice Finance System'
+                      ? 'linear-gradient(45deg, #9333EA, #007bff)'
+                      : 'linear-gradient(45deg, #00ff88, #007bff)',
                     color: '#0a0a0a',
                     fontWeight: '600',
                     textDecoration: 'none',
@@ -346,7 +357,9 @@ export default function ProjectsPage() {
                   }}
                   onMouseEnter={(e) => {
                     e.target.style.transform = 'translateY(-2px)';
-                    e.target.style.boxShadow = '0 8px 25px rgba(0, 255, 136, 0.4)';
+                    e.target.style.boxShadow = project.title === 'Microservice Finance System'
+                      ? '0 8px 25px rgba(147, 51, 234, 0.4)'
+                      : '0 8px 25px rgba(0, 255, 136, 0.4)';
                   }}
                   onMouseLeave={(e) => {
                     e.target.style.transform = 'translateY(0)';
@@ -364,9 +377,11 @@ export default function ProjectsPage() {
                     gap: '8px',
                     padding: '10px 20px',
                     background: 'transparent',
-                    color: '#00ff88',
+                    color: project.title === 'Microservice Finance System' ? '#9333EA' : '#00ff88',
                     fontWeight: '600',
-                    border: '1px solid rgba(0, 255, 136, 0.3)',
+                    border: project.title === 'Microservice Finance System'
+                      ? '1px solid rgba(147, 51, 234, 0.3)'
+                      : '1px solid rgba(0, 255, 136, 0.3)',
                     borderRadius: '8px',
                     transition: 'all 0.3s ease',
                     fontSize: '0.9rem',
@@ -375,8 +390,11 @@ export default function ProjectsPage() {
                     justifyContent: 'center',
                     backdropFilter: 'blur(10px)'
                   }}
+                  onClick={() => setVideoModal({ open: true, src: project.videoSrc })}
                   onMouseEnter={(e) => {
-                    e.target.style.background = 'rgba(0, 255, 136, 0.1)';
+                    e.target.style.background = project.title === 'Microservice Finance System'
+                      ? 'rgba(147, 51, 234, 0.1)'
+                      : 'rgba(0, 255, 136, 0.1)';
                     e.target.style.transform = 'translateY(-2px)';
                   }}
                   onMouseLeave={(e) => {
@@ -392,6 +410,58 @@ export default function ProjectsPage() {
           ))}
         </div>
 
+        {/* Video Modal */}
+        {videoModal.open && (
+          <div
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              width: '100vw',
+              height: '100vh',
+              background: 'rgba(0,0,0,0.8)',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              zIndex: 9999,
+            }}
+            onClick={() => setVideoModal({ open: false, src: '' })}
+          >
+            <div
+              style={{
+                position: 'relative',
+                width: '80%',
+                maxWidth: '900px',
+                aspectRatio: '16/9',
+                background: '#000',
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <video width="100%" height="100%" controls autoPlay>
+                <source src={videoModal.src} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <button
+                onClick={() => setVideoModal({ open: false, src: '' })}
+                style={{
+                  position: 'absolute',
+                  top: '10px',
+                  right: '10px',
+                  background: 'rgba(255,255,255,0.2)',
+                  border: 'none',
+                  padding: '6px 12px',
+                  cursor: 'pointer',
+                  color: '#fff',
+                  fontWeight: '700',
+                  borderRadius: '6px'
+                }}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Call to Action */}
         <div style={{
           textAlign: 'center',
@@ -399,7 +469,9 @@ export default function ProjectsPage() {
           background: 'rgba(255, 255, 255, 0.05)',
           borderRadius: '16px',
           border: '1px solid rgba(255, 255, 255, 0.1)',
-          backdropFilter: 'blur(10px)'
+                    backdropFilter: 'blur(10px)',
+          position: 'relative',
+          overflow: 'hidden'
         }}>
           <h2 style={{
             fontSize: '2rem',
@@ -420,6 +492,7 @@ export default function ProjectsPage() {
             margin: '0 auto 25px auto'
           }}>
             I'm always open to discussing new opportunities and interesting projects.
+            Especially in distributed systems and microservices architecture.
           </p>
           <button
             onClick={() => navigate('/contact')}
@@ -432,7 +505,7 @@ export default function ProjectsPage() {
               borderRadius: '8px',
               cursor: 'pointer',
               fontWeight: '600',
-              transition: 'all 0.3s ease'
+              transition: 'all 0.3s ease',
             }}
             onMouseEnter={(e) => {
               e.target.style.transform = 'translateY(-2px)';
@@ -450,3 +523,4 @@ export default function ProjectsPage() {
     </div>
   );
 }
+

@@ -166,7 +166,7 @@ export default function AboutSection() {
               </div>
               <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
                 <span style={{ color: '#00ff88', marginRight: '10px' }}>›</span>
-                <strong>Bachelor of Technology in Computer Science</strong> – Graduating 2025
+                <strong>Bachelor of Technology in Computer Science</strong> - 2025
               </div>
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <span style={{ color: '#00ff88', marginRight: '10px' }}>›</span>
