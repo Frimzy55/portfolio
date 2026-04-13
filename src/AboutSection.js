@@ -124,58 +124,64 @@ export default function AboutSection() {
               borderRadius: '8px',
               fontFamily: "'Fira Code', monospace",
             }}>
-              <strong>Mission:</strong> To create technology that makes a difference.
+              <strong>Mission:</strong> Currently building a microfinance system to streamline financial operations, improve accessibility, and strengthen real-world backend system design.
             </p>
           </div>
         </Card>
 
         {/* Education */}
-        <Card delay={100}>
-          <h2 style={{
-            fontSize: '2rem',
-            fontWeight: 700,
-            marginBottom: '25px',
-            color: '#00ff88',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '15px',
-            fontFamily: "'Fira Code', monospace",
-          }}>
-            <span style={{ color: '#007bff' }}>&lt;</span>
-            Education
-            <span style={{ color: '#007bff' }}>/&gt;</span>
-          </h2>
-          <div style={{
-            background: 'rgba(0, 123, 255, 0.1)',
-            padding: '25px',
-            borderRadius: '12px',
-            border: '1px solid rgba(0, 123, 255, 0.3)',
-          }}>
-            <h3 style={{ 
-              color: '#007bff', 
-              marginBottom: '15px',
-              fontSize: '1.3rem',
-              fontFamily: "'Fira Code', monospace",
-            }}>
-              Koforidua Technical University
-            </h3>
-            <div style={{ lineHeight: '1.8', color: '#cccccc' }}>
-              <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                <span style={{ color: '#00ff88', marginRight: '10px' }}>›</span>
-                <strong>HND in Computer Science</strong> –  2023
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                <span style={{ color: '#00ff88', marginRight: '10px' }}>›</span>
-                <strong>Bachelor of Technology in Computer Science</strong> - 2025
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <span style={{ color: '#00ff88', marginRight: '10px' }}>›</span>
-                Focused on encryption, real-time systems, and fullstack development
-              </div>
-            </div>
-          </div>
-        </Card>
+       <Card delay={100}>
+  <h2 style={{
+    fontSize: '2rem',
+    fontWeight: 700,
+    marginBottom: '25px',
+    color: '#00ff88',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '15px',
+    fontFamily: "'Fira Code', monospace",
+  }}>
+    <span style={{ color: '#007bff' }}>&lt;</span>
+    Education
+    <span style={{ color: '#007bff' }}>/&gt;</span>
+  </h2>
 
+  <div style={{
+    background: 'rgba(0, 123, 255, 0.1)',
+    padding: '25px',
+    borderRadius: '12px',
+    border: '1px solid rgba(0, 123, 255, 0.3)',
+  }}>
+    
+    <h3 style={{ 
+      color: '#007bff', 
+      marginBottom: '15px',
+      fontSize: '1.3rem',
+      fontFamily: "'Fira Code', monospace",
+    }}>
+      Koforidua Technical University
+    </h3>
+
+    <div style={{ lineHeight: '1.8', color: '#cccccc' }}>
+      
+      <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+        <span style={{ color: '#00ff88', marginRight: '10px' }}>›</span>
+        <strong>HND in Computer Science</strong> – Graduated 2023
+      </div>
+
+      <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+        <span style={{ color: '#00ff88', marginRight: '10px' }}>›</span>
+        <strong>Bachelor of Technology in Computer Science</strong> – Graduated 2025
+      </div>
+
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <span style={{ color: '#00ff88', marginRight: '10px' }}>›</span>
+        Focused on encryption, real-time systems, and fullstack development
+      </div>
+
+    </div>
+  </div>
+</Card>
         {/* Skills Section */}
         <section id="skills">
           <SkillSection cardStyle={cardStyle} cardHoverStyle={cardHoverStyle} />
